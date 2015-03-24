@@ -4,15 +4,15 @@ from hash_self import Hashtabell
 class Song:
 
     def __init__(self, artist, title):
-        self.artist = artist
-        self.title = title 
+        self.namn = artist
+        self.vikt = title 
 
     def __str__(self):
         return "{" + self.namn + " " +  str(self.vikt) + "}"
 
 def lasfil(filnamn):
     minlista = Hashtabell(8000000)
-    with open(filnamn) as fil:
+    with open(filnamn, encoding ='utf-8') as fil:
         for rad in fil:
             data = rad.split("<SEP>")
             artist = data[2].strip()
@@ -23,7 +23,7 @@ def lasfil(filnamn):
 
 def hitta(artist, songtable):
     start = time()
-    print(songtable[artist])
+    print(songtable.get(artist))
     stop = time()
     tidhash = stop - start
     return tidhash
